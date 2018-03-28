@@ -25,11 +25,7 @@ title:  关于作者
 
 ## 工作技能
 
-java
-python
-分布式
-IM
-流程
+java\python\分布式\IM\流程
 
 
 
