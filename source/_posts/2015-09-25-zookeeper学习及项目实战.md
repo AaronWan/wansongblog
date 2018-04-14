@@ -7,6 +7,8 @@ tags: [java,消息对列]
 ---
 >> ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services. 。
 
+    它设计一种新的数据结构——Znode，然后在该数据结构的基础上定义了一些原语，也就是一些关于该数据结构的一些操作。有了这些数据结构和原语还不够，因为我们的ZooKeeper是工作在一个分布式的环境下，我们的服务是通过消息以网络的形式发送给我们的分布式应用程序，所以还需要一个通知机制——Watcher机制。那么总结一下，ZooKeeper所提供的服务主要是通过：数据结构+原语+watcher机制，三个部分来实现的。
+
 ## 使用场景下会使用zookeeper
 
 1. 项目中在监控mongodb的oplog来进行同步数据库的变更给别的部门.若想做的多机互备,就需要使用到分布式锁,由一台机器进行对oplog的变化进行同步
@@ -40,9 +42,7 @@ ZooKeeper是一种为分布式应用所设计的高可用、高性能且一致�
 4. 集群管理
 5. 队列管理
 
-```
-ZooKeeper在实现这些服务时，首先它设计一种新的数据结构——Znode，然后在该数据结构的基础上定义了一些原语，也就是一些关于该数据结构的一些操作。有了这些数据结构和原语还不够，因为我们的ZooKeeper是工作在一个分布式的环境下，我们的服务是通过消息以网络的形式发送给我们的分布式应用程序，所以还需要一个通知机制——Watcher机制。那么总结一下，ZooKeeper所提供的服务主要是通过：数据结构+原语+watcher机制，三个部分来实现的。
-```
+
 
 ## Zookeeper文件系统
 
@@ -63,21 +63,73 @@ ZooKeeper在实现这些服务时，首先它设计一种新的数据结构—�
 5. 原子性：更新只能成功或者失败，没有中间状态。
 6. 顺序性：所有Server，同一消息发布顺序一致。
 
-## Zookeeper 下 Server工作状态
+
+## 场景分析
+
+1. 分布式锁的场景使用
+
+
+    ```sh
+    zkCli.sh -server x.x.x.x:4180
+
+    ls /key
+
+    >[data, leader]
+    
+    [zk: x.x.x.x:4180(CONNECTED) 6] get /key/leader
+    
+    cZxid = 0xc1098cd0b0
+    ctime = Sun Jul 16 13:10:01 CST 2017
+    mZxid = 0xc1098cd0b0
+    mtime = Sun Jul 16 13:10:01 CST 2017
+    pZxid = 0xc112aec1c0
+    cversion = 152
+    dataVersion = 0
+    aclVersion = 0
+    ephemeralOwner = 0x0
+    dataLength = 0
+    numChildren = 2
+
+    [zk: x.x.x.x:4180(CONNECTED) 7] ls /key/leader
+    [_c_7ea9234d-3973-4e1d-8a6a-e2e30062cdc4-latch-0000000076, _c_5444e12a-c7ef-48bb-8ee6-271eea4a1c29-latch-0000000075]
+    [zk: x.x.x.x:4180(CONNECTED) 8] get /key/leader/_c_7ea9234d-3973-4e1d-8a6a-e2e30062cdc4-latch-0000000076
+    24
+    cZxid = 0xc112aec1c0
+    ctime = Fri Mar 30 16:58:50 CST 2018
+    mZxid = 0xc112aec1c0
+    mtime = Fri Mar 30 16:58:50 CST 2018
+    pZxid = 0xc112aec1c0
+    cversion = 0
+    dataVersion = 0
+    aclVersion = 0
+    ephemeralOwner = 0xd5848ddc5ec71f6
+    dataLength = 2
+    numChildren = 0
+
+    [zk: x.x.x.x:4180(CONNECTED) 9] get /key/leader/_c_5444e12a-c7ef-48bb-8ee6-271eea4a1c29-latch-0000000075
+    5
+    cZxid = 0xc1123e0f90
+    ctime = Tue Mar 27 10:55:03 CST 2018
+    mZxid = 0xc1123e0f90
+    mtime = Tue Mar 27 10:55:03 CST 2018
+    pZxid = 0xc1123e0f90
+    cversion = 0
+    dataVersion = 0
+    aclVersion = 0
+    ephemeralOwner = 0x259977a5b1b3de0
+    dataLength = 1
+    numChildren = 0
+    
 
     ```
-       每个Server在工作过程中有三种状态：
-       LOOKING：当前Server不知道leader是谁，正在搜寻
-       LEADING：当前Server即为选举出来的leader
-       FOLLOWING：leader已经选举出来，当前Server与之同步
-    ```
 
 
 
+## 经典文章链接
 
-
-
-
+[zookeeper系列](https://segmentfault.com/a/1190000012185902)
+[Leader选举](https://blog.csdn.net/gaoshan12345678910/article/details/67638657)
+[基本概念](https://www.cnblogs.com/jsStudyjj/p/5360740.html)
 
 
 
