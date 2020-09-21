@@ -3,19 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
+Hexo: "2.1"
+logo_title: 万松
 title: Share
-subtitle: 自强不息,厚德载物
 description: 生活点滴和知识分享
 author: 万松
-language: zh-CN
-timezone:
 
-# URL
-## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://www.wansonglife.com
-root: /
-permalink: :year/:month/:day/:title/
-permalink_defaults:
+language: zh-CN
 
 # Directory
 source_dir: source
@@ -37,6 +31,8 @@ render_drafts: false
 post_asset_folder: true
 relative_link: false
 future: true
+
+
 highlight:
   enable: true
   line_number: false
@@ -60,23 +56,32 @@ time_format: HH:mm:ss
 per_page: 10
 pagination_dir: page
 
+
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
-
+theme: blog-aaron
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
+
 deploy:
   type: git
   repo: https://github.com/AaronWan/aaronwan.github.io.git
   branch: master
 
+# 站内关键词搜索 | Local Search
 search:
+  enable: true
   path: search.xml
   field: post
-  format: html
-  limit: 10000
+
+# Valine 评论系统 | Comments of Valine
+## 请改成自己的 KEY ｜ Replace Your Own Key
+## 若关闭valine 设置enable为false
+valine:
+  enable: true
+  appId: b13h0PpoiVVieODkmdrjUw2R-gzGzoHsz
+  appKey: NMiO8n8rxtwYIaUdndXwbcKH
 
 # flow
 flowchart:

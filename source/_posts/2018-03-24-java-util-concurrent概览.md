@@ -138,13 +138,10 @@ public class UnsafeGuestbookServlet extends HttpServlet {
 
 ## 线程安全集合
 
-    JDK 1.2 中引入的 Collection 框架是一种表示对象集合的高度灵活的框架，它使用基本接口 List、Set 和 Map。通过 JDK 提供每个集合的多次实现（HashMap、Hashtable、TreeMap、WeakHashMap、HashSet、TreeSet、Vector、ArrayList、LinkedList 等等）。其中一些集合已经是线程安全的（Hashtable 和 Vector），通过同步的封装工厂（Collections.synchronizedMap()、synchronizedList() 和 synchronizedSet()），其余的集合均可表现为线程安全的。
-
-    java.util.concurrent 包添加了多个新的线程安全集合类（ConcurrentHashMap、CopyOnWriteArrayList 和 CopyOnWriteArraySet）。这些类的目的是提供高性能、高度可伸缩性、线程安全的基本集合类型版本。
-
-    java.util 中的线程集合仍有一些缺点。例如，在迭代锁定时，通常需要将该锁定保留在集合中，否则，会有抛出 ConcurrentModificationException 的危险。（这个特性有时称为条件线程安全；有关的更多说明，请参阅参考资料。）此外，如果从多个线程频繁地访问集合，则常常不能很好地执行这些类。java.util.concurrent 中的新集合类允许通过在语义中的少量更改来获得更高的并发。
-
-    JDK 5.0 还提供了两个新集合接口 -- Queue 和 BlockingQueue。Queue 接口与 List 类似，但它只允许从后面插入，从前面删除。通过消除 List 的随机访问要求，可以创建比现有 ArrayList 和 LinkedList 实现性能更好的 Queue 实现。因为 List 的许多应用程序实际上不需要随机访问，所以Queue 通常可以替代 List，来获得更好的性能。
+>> JDK 1.2 中引入的 Collection 框架是一种表示对象集合的高度灵活的框架，它使用基本接口 List、Set 和 Map。通过 JDK 提供每个集合的多次实现（HashMap、Hashtable、TreeMap、WeakHashMap、HashSet、TreeSet、Vector、ArrayList、LinkedList 等等）。其中一些集合已经是线程安全的（Hashtable 和 Vector），通过同步的封装工厂（Collections.synchronizedMap()、synchronizedList() 和 synchronizedSet()），其余的集合均可表现为线程安全的。
+>java.util.concurrent 包添加了多个新的线程安全集合类（ConcurrentHashMap、CopyOnWriteArrayList 和 CopyOnWriteArraySet）。这些类的目的是提供高性能、高度可伸缩性、线程安全的基本集合类型版本。
+>java.util 中的线程集合仍有一些缺点。例如，在迭代锁定时，通常需要将该锁定保留在集合中，否则，会有抛出 ConcurrentModificationException 的危险。（这个特性有时称为条件线程安全；有关的更多说明，请参阅参考资料。）此外，如果从多个线程频繁地访问集合，则常常不能很好地执行这些类。java.util.concurrent 中的新集合类允许通过在语义中的少量更改来获得更高的并发。
+>JDK 5.0 还提供了两个新集合接口 -- Queue 和 BlockingQueue。Queue 接口与 List 类似，但它只允许从后面插入，从前面删除。通过消除 List 的随机访问要求，可以创建比现有 ArrayList 和 LinkedList 实现性能更好的 Queue 实现。因为 List 的许多应用程序实际上不需要随机访问，所以Queue 通常可以替代 List，来获得更好的性能。
 
 1. 弱一致的迭代器
 
@@ -425,13 +422,10 @@ public class UnsafeGuestbookServlet extends HttpServlet {
 
 9. 定制 ThreadPoolExecutor
 
-    Executors 中的 newFixedThreadPool 和 newCachedThreadPool 工厂方法返回的 Executor 是类 ThreadPoolExecutor 的实例，是高度可定制的。
-
-    通过使用包含 ThreadFactory 变量的工厂方法或构造函数的版本，可以定义池线程的创建。ThreadFactory 是工厂对象，其构造执行程序要使用的新线程。
-
-    使用定制的线程工厂，创建的线程可以包含有用的线程名称，并且这些线程是守护线程，属于特定线程组或具有特定优先级。
-
-    下面是线程工厂的例子，它创建守护线程，而不是创建用户线程：
+>> Executors 中的 newFixedThreadPool 和 newCachedThreadPool 工厂方法返回的 Executor 是类 ThreadPoolExecutor 的实例，是高度可定制的。
+通过使用包含 ThreadFactory 变量的工厂方法或构造函数的版本，可以定义池线程的创建。ThreadFactory 是工厂对象，其构造执行程序要使用的新线程。
+使用定制的线程工厂，创建的线程可以包含有用的线程名称，并且这些线程是守护线程，属于特定线程组或具有特定优先级。
+下面是线程工厂的例子，它创建守护线程，而不是创建用户线程：
 
     ```java
     public class DaemonThreadFactory implements ThreadFactory {
