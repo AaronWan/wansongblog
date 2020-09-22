@@ -75,6 +75,8 @@ search:
   path: search.xml
   field: post
 
+avatar: /images/head/photo2.jpeg
+
 # Valine 评论系统 | Comments of Valine
 ## 请改成自己的 KEY ｜ Replace Your Own Key
 ## 若关闭valine 设置enable为false
