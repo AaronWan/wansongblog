@@ -2,8 +2,8 @@
 title: Django,Mysql,空间数据是通过Google地图和高德地图进行采集的
 layout: detail
 description: 在做项目时遇到用点+半径的空间查询
-category: [项目,方案]
-tags: [project,blog,openssl,rsa,mysql,private]
+category: [方案]
+tags: [GIS,python,mysql]
 ---
 
 ##环境

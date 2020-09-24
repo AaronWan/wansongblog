@@ -2,8 +2,8 @@
 title: ionic 学习计划
 layout: detail
 description: ionic 学习计划
-category: [扩展知识,读书学习,ionic]
-tags: [book,schedule,ionic,angularjs]
+category: [扩展知识,读书学习]
+tags: [ionic,angularjs]
 ---
 
 ###1. 第一章 ionic基本介绍

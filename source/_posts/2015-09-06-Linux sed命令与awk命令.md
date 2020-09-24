@@ -2,8 +2,8 @@
 title: sed,awk
 layout: detail
 description: 工作，运维知识,sed,awk
-category:  [扩展知识,linux,命令]
-tags: [linux命令,sed,awk]
+category:  [扩展知识,linux]
+tags: [linux]
 ---
 Linux shell编程从初学到精通 
 

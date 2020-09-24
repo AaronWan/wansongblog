@@ -2,8 +2,8 @@
 title: zookeeper学习及项目实践
 layout: detail
 description: 主要特点及项目中的实践,分布式协调技术
-category: [分布式,zookeeper]
-tags: [java,消息对列]
+category: [技术]
+tags: [java,分布式,zookeeper]
 ---
 >> ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services. 。
 

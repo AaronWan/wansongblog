@@ -2,8 +2,8 @@
 title: 第三章 ionic 实例 Trendicity
 layout: detail
 description: ionic 实例 Trendicity
-category: [扩展知识,读书学习,ionic]
-tags: [book,schedule,ionic,angularjs]
+category: [扩展知识,读书学习]
+tags: [ionic,angularjs]
 ---
 
 现在在你的工具箱中有很多工具，让我们来谈谈开发一个真正的手机应用。Instagram是一个非常受欢迎的照片分享应用。使这些照片更加有趣并且展示一些Ionic功能，我们将会涉及到一个我们开发应用，它叫 Trendicity。这个应用以多种方式获取和展示Instagram的照片。

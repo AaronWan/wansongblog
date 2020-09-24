@@ -1,8 +1,8 @@
 ---
 title: Alfred Workflow快速打开idea项目
 date: 2020-09-20 22:19:49
-category: [扩展知识,日常工具]
-tags: [项目管理工具,maven]
+category: [日常工具]
+tags: [mac,alfred,workflow]
 ---
 
 ![](/images/alfred/open_idea.gif)

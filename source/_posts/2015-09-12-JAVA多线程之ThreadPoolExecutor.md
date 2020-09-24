@@ -2,8 +2,8 @@
 title: ThreadPoolExecutor 源码分析
 layout: detail
 description: Java thread 多线程
-category: [Java 基本知识,多线程]
-tags: [多线程,并发]
+category: [技术]
+tags: [java,多线程]
 ---
 ```
 /*
