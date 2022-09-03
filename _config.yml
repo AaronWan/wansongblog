@@ -66,7 +66,7 @@ theme: blog-aaron
 
 deploy:
   type: git
-  repo: https://github.com/AaronWan/aaronwan.github.io.git
+  repo: git@github.com:AaronWan/aaronwan.github.io.git
   branch: master
 
 # 站内关键词搜索 | Local Search
