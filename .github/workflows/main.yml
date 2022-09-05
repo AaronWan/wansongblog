@@ -30,6 +30,10 @@ jobs:
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git config --global user.name "AaronWan"
           git config --global user.email "sejin@126.com"
+          pwd
+          cd themes
+          git clone git@github.com:AaronWan/blog-aaron.git
+          cd ..
       - name: Install dependencies
         run: |
           npm i -g hexo-cli
