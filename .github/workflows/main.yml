@@ -30,7 +30,7 @@ jobs:
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git config --global user.name "AaronWan"
           git config --global user.email "sejin@126.com"
-          git clone git@github.com:AaronWan/blog-aaron.git themes/
+          git clone https://github.com/AaronWan/blog-aaron.git themes/
         
       - name: Install dependencies
         run: |
