@@ -1,12 +1,18 @@
 name: Hexo Deploy Automatically
 
-on: [push]
+on:
+  push:
+    branches:
+    - master
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
-    
+    strategy:
+      matrix:
+        node-version: [14.x]
+        
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -14,7 +20,7 @@ jobs:
     - name: Node.js envs
       uses: actions/setup-node@v1
       with:
-        node-version: "14.x"
+          node-version: ${{ matrix.node-version }}
     
     - name: Hexo deploy
       env:
@@ -24,8 +30,10 @@ jobs:
         echo "$HEXO_DEPLOY_KEY" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan github.com >> ~/.ssh/known_hosts
+        ssh-keyscan 140.82.114.3 >> ~/.ssh/known_hosts
         git config --global user.name "AaronWan"
         git config --global user.email "sejin@126.com"
+        git clone https://github.com/AaronWan/blog-aaron.git themes/blog-aaron
         npm i -g hexo-cli
         npm i
         hexo clean && hexo generate && hexo deploy
