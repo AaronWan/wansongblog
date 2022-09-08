@@ -28,7 +28,7 @@ jobs:
       # 从之前设置的 secret 获取部署私钥
       - name: Set up environment
         env:
-          DEPLOY_KEY: ${{ secrets.Deploy }}
+          DEPLOY_KEY: ${{ secrets.Deploy-Key }}
         run: |
           mkdir -p ~/.ssh
           echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
