@@ -1,45 +1,31 @@
-name: HEXO CI
+name: Hexo Deploy Automatically
 
-on:
-  push:
-    branches:
-    - master
+on: [push]
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
-
+    
     steps:
-      - uses: actions/checkout@v1
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Configuration environment
-        env:
-          HEXO_DEPLOY_PRI: ${{secrets.HEXO_DEPLOY_PRI}}
-        run: |
-          touch .git-credentials
-          echo https://AaronWan:sejin@126.com@github.com > .git-credentials
-          git config --global credential.helper store
-          
-          mkdir -p ~/.ssh/
-          echo "$HEXO_DEPLOY_PRI" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          git config --global user.name "AaronWan"
-          git config --global user.email "sejin@126.com"
-          git clone https://github.com/AaronWan/blog-aaron.git themes/
-        
-      - name: Install dependencies
-        run: |
-          npm i -g hexo-cli
-          npm i
-      - name: Deploy hexo
-        run: |
-          hexo clean && hexo generate && hexo deploy
+    - name: Checkout
+      uses: actions/checkout@v2
+      
+    - name: Node.js envs
+      uses: actions/setup-node@v1
+      with:
+        node-version: "14.x"
+    
+    - name: Hexo deploy
+      env:
+        HEXO_DEPLOY_KEY: ${{ secrets.HEXO_DEPLOY_KEY }}
+      run: |
+        mkdir -p ~/.ssh/
+        echo "$HEXO_DEPLOY_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+        git config --global user.name "AaronWan"
+        git config --global user.email "sejin@126.com"
+        npm i -g hexo-cli
+        npm i
+        hexo clean && hexo generate && hexo deploy
