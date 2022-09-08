@@ -25,16 +25,17 @@ jobs:
         with:
           node-version: "14.x"
 
-      - name: Hexo deploy
+      # 从之前设置的 secret 获取部署私钥
+      - name: Set up environment
         env:
-          HEXO_DEPLOY_KEY: ${{ secrets.DEPLOY }}
+          DEPLOY_KEY: ${{ secrets.DEPLOY }}
         run: |
-          mkdir -p ~/.ssh/
-          echo "$HEXO_DEPLOY_KEY" > ~/.ssh/id_rsa
+          mkdir -p ~/.ssh
+          echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
-          git config --global user.name "AaronWan"
-          git config --global user.email "sejin@126.com"
-          npm i -g hexo-cli
-          npm i
+
+      # 生成并部署
+      - name: Deploy
+        run: |
           hexo clean && hexo generate && hexo deploy

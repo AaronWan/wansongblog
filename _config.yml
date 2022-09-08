@@ -70,6 +70,8 @@ deploy:
   type: git
   repo: git@github.com:AaronWan/aaronwan.github.io.git
   branch: master
+  name: AaronWan
+  email: sejin@126.com
 
 # 站内关键词搜索 | Local Search
 search:
