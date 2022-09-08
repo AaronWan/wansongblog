@@ -34,8 +34,12 @@ jobs:
           echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - name: Install dependencies
+        run: |
+          npm i -g hexo-cli
+          npm i
 
       # 生成并部署
-      - name: Deploy
+      - name: Deploy hexo
         run: |
           hexo clean && hexo generate && hexo deploy
