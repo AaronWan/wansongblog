@@ -25,7 +25,7 @@ jobs:
           HEXO_DEPLOY_PRI: ${{secrets.HEXO_DEPLOY_PRI}}
         run: |
           touch .git-credentials
-          echo http(s)://AaronWan:sejin@126.com@github.com > .git-credentials
+          echo https://AaronWan:sejin@126.com@github.com > .git-credentials
           git config --global credential.helper store
           
           mkdir -p ~/.ssh/
