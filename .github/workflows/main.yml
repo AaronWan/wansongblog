@@ -28,10 +28,11 @@ jobs:
       # 从之前设置的 secret 获取部署私钥
       - name: Set up environment
         env:
-          DEPLOY_KEY: ${{ secrets.Deploy-Key }}
+          DEPLOY_KEY: ${{ secrets.Deploy }}
         run: |
           mkdir -p ~/.ssh
           echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
+          cat ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
 
