@@ -68,7 +68,7 @@ theme: blog-aaron
 
 deploy:
   type: git
-  repo: git@github.com:AaronWan/aaronwan.github.io.git
+  repo: https://github.com/AaronWan/aaronwan.github.io.git
   branch: master
   name: AaronWan
   email: sejin@126.com
