@@ -5,7 +5,7 @@
 # Site
 Hexo: "2.1"
 logo_title: 万松
-title: Share
+title: 道 - 自然 🍃
 description: 生活点滴和知识分享
 author: 万松
 
@@ -62,7 +62,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: blog-aaron
+theme: landscape
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 
